@@ -5,6 +5,7 @@ class Config(BaseSettings):
     allowed:list[str] = Field(..., alias="ALLOWED.ORIGINS")
     supabase_url:str = Field(..., alias="SUPABASE_URL")
     supabase_key:str = Field(default="public", alias="SUPABASE_KEY")
+    supabase_schema:str = Field(..., alias="SUPABASE_SCHEMA")
     supabase_usuario:str = Field(..., alias="SUPABASE_USUARIO")
     supabase_alumno:str = Field(..., alias="SUPABASE_ALUMNO")
     supabase_asesor:str = Field(..., alias="SUPABASE_AESOSOR")
