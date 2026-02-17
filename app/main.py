@@ -8,3 +8,4 @@ app.include_router(rutas.router)
 # .\venv\Scripts\activate
 # uvicorn app.main:app --reload
 #deactivate
+#pip freeze > requirements.txt
