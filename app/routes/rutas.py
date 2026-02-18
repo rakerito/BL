@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Path, Query
 from app.models.usuario import CrearUsuario, ActualizarUsuario, RecuperarUsuarios, IniciarUsuario, ListaUsuario, SoloUsuario
 from app.service.usuario_service import inicio, crearUsuario, eliminarUsuario, actualizarUsuario
+from app.service.disponibilidad_service import obtenerDisponibilidadPorAsesor, crearDisponibilidad
 from app.service.encryptar import descifrar
 
 router = APIRouter()
@@ -35,3 +36,18 @@ def eliminar_Usuario(id_usuario:int):
 @router.put("/actualizarUsuario/{id_usurio}", response_model=ActualizarUsuario, name="actualizarUsuario")
 def actualizar_Usuario(id_usuario:int, body:ActualizarUsuario):
     return actualizarUsuario(id_usuario, body.model_dump(exclude_none=True))
+
+# -------------------------- RUTAS DE DISPONIBILIDAD --------------------------
+
+# Ruta para OBTENER la disponibilidad de un asesor
+@router.get("/disponibilidad/{id_asesor}", name="obtenerDisponibilidad")
+def obtener_disponibilidad(id_asesor: int = Path(..., ge=0)):
+    return obtenerDisponibilidadPorAsesor(id_asesor)
+
+# Ruta para CREAR una nueva disponibilidad (el botón de Guardar)
+@router.post("/disponibilidad", name="crearDisponibilidad")
+def crear_nueva_disponibilidad(data: CrearDisponibilidad):
+    # Convertimos el modelo de Pydantic a diccionario para el service
+    return crearDisponibilidad(data.model_dump())
+
+# -------------------------------------------------------------------------------
