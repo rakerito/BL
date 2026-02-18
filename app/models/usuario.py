@@ -12,7 +12,7 @@ class CrearUsuario(BaseModel):
     plantel:str = Field(max_length=10)
 
 class ActualizarUsuario(BaseModel):
-    nombre:str | None = Field(max_length=30)
+    nombres:str | None = Field(max_length=30)
     apellidos:str | None = Field(max_length=30)
     contraseña:str | None = Field()
     categoria:str | None = Field(max_length=15)
@@ -22,7 +22,7 @@ class ActualizarUsuario(BaseModel):
 class RecuperarUsuarios(BaseModel):
     id_usuario:int
     correo:str
-    nombre:str
+    nombres:str
     apellidos:str
     categoria:str
     cuatrimestre:str
